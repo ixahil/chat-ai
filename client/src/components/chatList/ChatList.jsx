@@ -2,17 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./chatList.css";
+import { fetcher } from "../../lib/fetcher";
 
 const ChatList = () => {
-  const { data, isPending, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["chats"],
-    queryFn: async () => {
-      const response = await fetch(
-        import.meta.env.VITE_BACKEND_URL + "userChats",
-        { credentials: "include" }
-      );
-      return response.json();
-    },
+    queryFn: async ({ signal }) => await fetcher("userChats", signal),
   });
 
   return (

@@ -6,6 +6,7 @@ import { Loader } from "lucide-react";
 import model from "../../lib/gemini";
 import MarkDown from "react-markdown";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { mutateFn } from "../../lib/fetcher";
 
 const NewPrompt = ({ data }) => {
   const [question, setQuestion] = useState("");
@@ -35,19 +36,13 @@ const NewPrompt = ({ data }) => {
   }, [data, answer, question, image.dbData]);
 
   const mutation = useMutation({
-    mutationFn: async () => {
-      return fetch(`${import.meta.env.VITE_BACKEND_URL}chats/${data._id}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          question: question.length ? question : undefined,
-          answer: answer,
-          image: image.dbData.filePath || undefined,
-        }),
-      }).then((response) => response.json());
+    mutationFn: async ({ signal }) => {
+      const body = {
+        question: question.length ? question : undefined,
+        answer: answer,
+        image: image.dbData.filePath || undefined,
+      };
+      await mutateFn(`chats/${data._id}`, body, signal);
     },
     onSuccess: () => {
       queryClient

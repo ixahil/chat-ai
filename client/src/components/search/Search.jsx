@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query";
 import "./search.css";
 import { useNavigate } from "react-router-dom";
+import { mutateFn } from "../../lib/fetcher";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -12,15 +13,8 @@ const Search = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (prompt) => {
-      return fetch(`${import.meta.env.VITE_BACKEND_URL}chats`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-      }).then((response) => response.json());
+    mutationFn: async (prompt, { signal }) => {
+      await mutateFn("chats", prompt, signal);
     },
     onSuccess: (id) => {
       queryClient.invalidateQueries({ queryKey: ["chats"] });

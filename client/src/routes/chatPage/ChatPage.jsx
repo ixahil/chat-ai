@@ -6,18 +6,13 @@ import { useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import { Loader } from "lucide-react";
 import { IKImage } from "imagekitio-react";
+import { fetcher } from "../../lib/fetcher";
 
 const ChatPage = () => {
   const params = useParams();
-  const { data, isPending, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["chat", params.id],
-    queryFn: async () => {
-      const response = await fetch(
-        import.meta.env.VITE_BACKEND_URL + "chats/" + params.id,
-        { credentials: "include" }
-      );
-      return response.json();
-    },
+    queryFn: async ({ signal }) => await fetcher(`chats/${params.id}`, signal),
   });
 
   return (
