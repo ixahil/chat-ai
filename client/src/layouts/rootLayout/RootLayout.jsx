@@ -6,9 +6,11 @@ import {
   SignedOut,
   SignIn,
   SignInButton,
+  useAuth,
   UserButton,
 } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import User from "../../components/user/User";
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -36,7 +38,7 @@ const RootLayout = () => {
                 </Link>
               </SignedOut>
               <SignedIn>
-                <UserButton />
+                <User />
               </SignedIn>
             </div>
           </header>

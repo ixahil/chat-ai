@@ -1,0 +1,23 @@
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .link {
+    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #217bfe;
+
+    &:hover {
+      background-color: #fff;
+      color: #217bfe;
+    }
+  }
+  .user {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+  }
+}

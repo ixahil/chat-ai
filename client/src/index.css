@@ -15,3 +15,66 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* Basic Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px; /* Scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Track background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb background */
+  border-radius: 10px; /* Thumb border-radius */
+}
+
+/* Hover and Active States */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Thumb hover background */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #444; /* Thumb active background */
+}
+
+/* Custom Scrollbar with Gradient */
+::-webkit-scrollbar-thumb {
+  background-image: -webkit-linear-gradient(top, #888, #555);
+  background-image: linear-gradient(
+    to bottom,
+    #888,
+    #555
+  ); /* For non-webkit browsers */
+}
+
+/* Custom Scrollbar with Color Change on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background-image: -webkit-linear-gradient(top, #555, #444);
+  background-image: linear-gradient(
+    to bottom,
+    #555,
+    #444
+  ); /* For non-webkit browsers */
+}
+
+/* Custom Scrollbar with Rounded Edges */
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+/* Custom Scrollbar with a Different Track Color */
+::-webkit-scrollbar-track {
+  background-color: #eee;
+}
+
+/* Custom Scrollbar with a Minimalist Look */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 5px;
+}
