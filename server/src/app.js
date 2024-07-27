@@ -5,9 +5,15 @@ import { connection } from "./db/dbConnection.js";
 import Chat from "./models/chat.model.js";
 import UserChats from "./models/userChats.model.js";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
+import expressListEndpoints from "express-list-endpoints";
+import { fileURLToPath } from "node:url";
+import path, { dirname } from "node:path";
 
 const app = express();
 const port = process.env.PORT;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(
   cors({
@@ -16,7 +22,16 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.set("views", path.join(__dirname, "../views"));
+
+app.use(express.json({ limit: "15mb" }));
+app.use(express.urlencoded({ extended: true, limit: "15mb" }));
+app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+  const endpoints = expressListEndpoints(app);
+  res.render("pages/index", { endpoints });
+});
 
 const imagekit = new ImageKit({
   publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
@@ -140,3 +155,5 @@ app.listen(port, () => {
   connection();
   console.log(`Server is running on port ${port}`);
 });
+
+export default app;

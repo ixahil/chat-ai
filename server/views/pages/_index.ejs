@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce Api</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>eCommerce Api</h1>
+    <h2>Working Routes</h2>
+    <ul>
+        <% endpoints.forEach(route=> { %>
+            <li><a href="<%= route.path %>">
+                    <%= route.methods.join(', ').toUpperCase() %> - <%= route.path %>
+            </a></li>
+        <% }); %>
+    </ul>
+</body>
+
+</html>
