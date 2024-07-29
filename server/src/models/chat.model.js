@@ -3,8 +3,9 @@ import mongoose from "mongoose";
 const chatSchema = new mongoose.Schema(
   {
     userId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "user",
     },
     history: [
       {

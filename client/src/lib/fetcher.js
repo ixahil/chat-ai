@@ -9,12 +9,30 @@ const client = axios.create({
 
 export const fetcher = async (endpoint, signal) => {
   const response = await client.get(endpoint, { signal });
-  const data = await response.data;
+  const { data } = await response.data;
   return data;
 };
 
-export const mutateFn = async (endpoint, body, signal) => {
-  const response = await client.post(endpoint, body, { signal });
-  const data = await response.data;
+export const mutateFn = async (
+  endpoint,
+  body = {},
+  method = "POST",
+  config = {}
+) => {
+  let response;
+
+  if (method === "POST") {
+    response = await client.post(endpoint, body, { ...config });
+  }
+  if (method === "PUT") {
+    response = await client.put(endpoint, body, { ...config });
+  }
+  if (method === "DELETE") {
+    response = await client.delete(endpoint, { ...config });
+  }
+
+  console.log(response);
+  const { data } = await response.data;
+
   return data;
 };

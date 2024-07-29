@@ -19,6 +19,11 @@ const genAi = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_PUBLIC_KEY);
 
 const model = genAi.getGenerativeModel({
   model: "gemini-1.5-flash",
+  tools: [
+    {
+      codeExecution: {},
+    },
+  ],
   safetySettings,
 });
 
