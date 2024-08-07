@@ -3,8 +3,8 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoadingButton } from "../components/ui";
-import { useAuth } from "../layouts/AuthProvider";
 import { mutateFn } from "../lib/fetcher";
+import { useAuth } from "@providers";
 
 const SignInpage = () => {
   const navigate = useNavigate();

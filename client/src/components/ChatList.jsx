@@ -11,7 +11,7 @@ const ChatList = () => {
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["chats"],
-    queryFn: async ({ signal }) => await fetcher("users/chats", signal),
+    queryFn: async () => await fetcher("users/chats"),
   });
 
   const { mutate, isPending } = useMutation({

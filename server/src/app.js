@@ -53,9 +53,19 @@ app.use("/api/v1/users", userRouter);
 
 app.use(errorHandler);
 
-app.listen(port, () => {
-  connection();
-  console.log(`Server is running on port ${port}`);
-});
+// server starting
+
+const startServer = () => {
+  app.listen(port, () => {
+    console.log(` ⚙️  Server is running on port ${port}`);
+  });
+};
+
+try {
+  await connection();
+  startServer();
+} catch (error) {
+  console.log("MongoDB Error: " + error);
+}
 
 export default app;

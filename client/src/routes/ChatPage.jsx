@@ -1,17 +1,16 @@
-import "./chatPage.css";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { fetcher } from "../lib/fetcher";
-import { useParams } from "react-router-dom";
 import { Loader } from "lucide-react";
-import Markdown from "react-markdown";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { CustomMarkdown, NewPrompt } from "../components";
+import { fetcher } from "../lib/fetcher";
+import "./chatPage.css";
 
 const ChatPage = () => {
   const params = useParams();
   const { data, error, isLoading } = useQuery({
     queryKey: ["chat", params.id],
-    queryFn: async ({ signal }) => await fetcher(`chats/${params.id}`, signal),
+    queryFn: async () => await fetcher(`chats/${params.id}`),
   });
 
   return (

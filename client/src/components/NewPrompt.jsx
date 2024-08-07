@@ -123,10 +123,14 @@ const NewPrompt = ({ data }) => {
         />
       )}
       {question && <div className="message user">{question}</div>}
-      {answer && (
-        <div className="message" suppressHydrationWarning={true}>
-          <CustomMarkdown>{answer}</CustomMarkdown>
-        </div>
+      {mutation.isPending ? (
+        <Loader className="animate-spin" />
+      ) : (
+        answer && (
+          <div className="message" suppressHydrationWarning={true}>
+            <CustomMarkdown>{answer}</CustomMarkdown>
+          </div>
+        )
       )}
       <div className="endChat" ref={endRef}></div>
       <div className="newPrompt">

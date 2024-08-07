@@ -1,5 +1,4 @@
-import DashboardLayout from "@layouts/Dashboard";
-import RootLayout from "@layouts/Root";
+import { RootLayout, DashboardLayout } from "@layouts";
 import {
   ChatPage,
   DashboardPage,
@@ -13,8 +12,7 @@ import ReactDOM from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import PrivateRoutes from "./routes/PrivateRoutes.jsx";
-import { AuthProvider } from "./layouts/AuthProvider.jsx";
+import { AuthProvider, PrivateRoutes } from "@providers";
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../layouts/AuthProvider";
+import { useAuth } from "../providers/AuthProvider";
 import SignInButtons from "./shared/SignInButtons";
 import UserButtons from "./shared/UserButtons";
 
