@@ -1,22 +1,21 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoadingButton } from "../components/ui";
 import { mutateFn } from "../lib/fetcher";
-import { useAuth } from "@providers";
 
 const SignInpage = () => {
   const navigate = useNavigate();
 
-  const { setData } = useAuth();
+  const queryClient = useQueryClient();
 
   const { mutate, isPending, error } = useMutation({
     mutationKey: ["user"],
     mutationFn: async (body) => mutateFn("users/login", body),
     onSuccess: (data) => {
+      queryClient.setQueryData(["user"], (oldData) => data);
       toast.success("Logged In successfully");
-      setData(data);
       navigate("/dashboard");
     },
   });

@@ -30,8 +30,6 @@ export const mutateFn = async (
   if (method === "DELETE") {
     response = await client.delete(endpoint, { ...config });
   }
-
-  console.log(response);
   const { data } = await response.data;
 
   return data;

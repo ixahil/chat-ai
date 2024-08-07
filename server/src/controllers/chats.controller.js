@@ -60,6 +60,7 @@ export const updateChat = AsyncHandler(async (req, res) => {
 
 export const deleteChat = AsyncHandler(async (req, res, next) => {
   const { _id: userId } = req.auth;
+  const chat = await Chat.findByIdAndDelete(req.params.id);
   const user = await User.findByIdAndUpdate(userId, {
     $pull: {
       chats: {
@@ -68,5 +69,5 @@ export const deleteChat = AsyncHandler(async (req, res, next) => {
     },
   });
 
-  res.status(204).json(new ApiResponse(204));
+  res.status(200).json(new ApiResponse(200, chat));
 });

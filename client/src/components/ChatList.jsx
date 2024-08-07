@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Loader, Trash } from "lucide-react";
 import React from "react";
-import { fetcher, mutateFn } from "../lib/fetcher";
-import { Link, Router, useNavigate } from "react-router-dom";
-import { DeleteIcon, Loader, Trash, Trash2Icon } from "lucide-react";
 import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { fetcher, mutateFn } from "../lib/fetcher";
 
 const ChatList = () => {
   const navigate = useNavigate();
@@ -16,9 +16,12 @@ const ChatList = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => await mutateFn(`users/chats/${id}`, {}, "DELETE"),
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success("Chat Deleted");
-      queryClient.invalidateQueries(["chats"]);
+      // queryClient.invalidateQueries(["chats"]);
+      queryClient.setQueryData(["chats"], (oldData) =>
+        oldData.filter((v) => v._id !== data._id)
+      );
       navigate("/dashboard");
     },
   });

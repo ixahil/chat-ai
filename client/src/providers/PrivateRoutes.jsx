@@ -7,6 +7,7 @@ import { useAuth } from "./AuthProvider";
 
 const PrivateRoutes = () => {
   const { data, isLoading } = useAuth();
+
   // const [isLoading, setIsLoading] = useState(true);
 
   // if (!data) {

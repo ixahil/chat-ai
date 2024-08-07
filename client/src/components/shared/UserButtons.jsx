@@ -1,20 +1,19 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../providers/AuthProvider";
 import { fetcher } from "../../lib/fetcher";
 
 const UserButtons = ({ data }) => {
   const navigate = useNavigate();
 
-  const { setData } = useAuth();
+  const queryClient = useQueryClient();
 
   const { mutate, isPending, error } = useMutation({
     mutationKey: ["user"],
     mutationFn: async () => fetcher("users/logout"),
     onSuccess: () => {
-      setData(null);
+      queryClient.setQueryData(["user"], () => null);
       toast.success("Logged out successfully");
       navigate("/");
     },

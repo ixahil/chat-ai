@@ -1,13 +1,12 @@
-import "./newPrompt.css";
-import { useEffect, useRef, useState } from "react";
-import Upload from "./Upload";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { IKImage } from "imagekitio-react";
 import { Loader } from "lucide-react";
-import model from "../lib/gemini";
-import MarkDown from "react-markdown";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
 import { mutateFn } from "../lib/fetcher";
+import model from "../lib/gemini";
 import CustomMarkdown from "./CustomMarkdown";
+import "./newPrompt.css";
+import Upload from "./Upload";
 
 const NewPrompt = ({ data }) => {
   const [question, setQuestion] = useState("");
