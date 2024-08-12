@@ -1,6 +1,8 @@
-# Ai Chat Application. Technologies utilized include \textbf{GeminiAi, Vite, ReactJS, NodeJS, ExpressJS, TanStack Queries V5.
+# Ai Chat Application
 
-Live Demo: [Demo](https://tictactoe.sahildev.pro)
+Technologies utilized include **GeminiAi, Vite, ReactJS, NodeJS, ExpressJS, TanStack Queries V5**
+
+Live Demo: [Demo]([https://tictactoe.sahildev.pro](https://chat-ai.sahildev.pro/))
 
 ## Run Local
 
