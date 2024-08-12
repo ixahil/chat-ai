@@ -2,17 +2,41 @@
 
 Technologies utilized include **GeminiAi, Vite, ReactJS, NodeJS, ExpressJS, TanStack Queries V5**
 
-Live Demo: [Demo]([https://tictactoe.sahildev.pro](https://chat-ai.sahildev.pro/))
+### Frontend
+
+**Vite, React.js, TanStack Queries V5, React Router Dom, Gemini Ai, React Markdown, Syntax Highlighter**
+
+> https://tictactoe.sahildev.pro](https://chat-ai.sahildev.pro/
+
+### Backend/Server
+
+**Node, Express.js, authentication, EJS, ImageKit, Mongoose**
+
+> https://api-chat-ai.sahildev.pro/
+
+> new
+
+Live Demo: [Demo](https://chat-ai.sahildev.pro/)
 
 ## Run Local
 
-- Install packages:
+- Client:
 
 ```js
+cd client
+
+npm install
+
+npm run dev
+```
+- Server:
+
+```js
+cd server
+
 pnpm install
-```
-- Run:
 
-```js
-pnpm run dev
+pnpm dev
 ```
+
+<> Developed and Managed by > [SahilDev.Pro](https://www.sahildev.pro/)
